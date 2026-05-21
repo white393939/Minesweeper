@@ -59,4 +59,9 @@ public class block {
     {
         isMine = true;
     }
+
+    public boolean isEmpty()
+    {
+        return adjMine == 0;
+    }
 }

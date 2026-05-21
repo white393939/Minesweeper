@@ -4,8 +4,9 @@ import java.io.*;
 public class Minesweeper
 {
     private block[][] gird;
+    private Scanner scan;
     
-    public Minesweeper ()
+    public Minesweeper()
     {
         grid = new block[12][12];
         initialize(22);
@@ -26,6 +27,18 @@ public class Minesweeper
     public Minesweeper(block[][] g)
     {
         grid = g;
+    }
+
+    public void start()
+    {
+        scan = new Scanner(System.in);
+        do
+        {
+            MinesweeperDisplayer.printBoard();
+        }
+        while(
+            
+            scan.hasNext());
     }
     
     private initialize(int nOfMine)
