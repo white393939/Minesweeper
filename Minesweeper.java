@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Minesweeper
 {
-    private block[][] gird;
+    private block[][] grid;
     private Scanner scan;
     
     public Minesweeper()
@@ -24,21 +24,26 @@ public class Minesweeper
         initialize((int) (nMines));
     }
 
-    public Minesweeper(block[][] g)
+    public void sweep(int row, int col)
     {
-        grid = g;
-    }
-
-    public void start()
-    {
-        scan = new Scanner(System.in);
-        do
+        grid[row][col].show();
+        if (grid[row][col].isEmpty())
         {
-            MinesweeperDisplayer.printBoard();
+            for (int i = row - 1; i < row + 2; row++)
+            {
+                for (int j = col - 1; j < col + 2; j++)
+                {
+                    try
+                    {
+                        if (!grid[i][j].isShown())
+                        {
+                            sweep(i, j);
+                        }
+                    }
+                    catch (IndexOutOfBoundsException e){}
+                }
+            }
         }
-        while(
-            
-            scan.hasNext());
     }
     
     private initialize(int nOfMine)
@@ -69,10 +74,7 @@ public class Minesweeper
                     {
                         grid[row][col].incrimentAdjMine();
                     }
-                    catch(IndexOutOfBoundsException)
-                    {
-                        continue;
-                    }
+                    catch(IndexOutOfBoundsException e){}}
                 }
             }
         }

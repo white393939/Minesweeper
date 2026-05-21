@@ -54,7 +54,7 @@ public class block {
     {
         isShown = true;
     }
-
+    
     public void setMine()
     {
         isMine = true;

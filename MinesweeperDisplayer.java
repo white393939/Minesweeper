@@ -1,4 +1,4 @@
-public MinesweeperDisplayer
+public class MinesweeperDisplayer
 {
     private static final String hide = "▣";
     private static final String empty = "□";
@@ -18,7 +18,7 @@ public MinesweeperDisplayer
                     if (b.isMine())
                     {
                         out = mine;
-                        end = false;
+                        end = true;
                     }
                     else if (b.isEmpty())
                     {
