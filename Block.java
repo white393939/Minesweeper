@@ -1,4 +1,4 @@
-public class block {
+public class Block {
     private boolean isMine;
     private boolean isShown;
     private int adjMine;
@@ -27,7 +27,7 @@ public class block {
         return this.isMine;
     }
 
-    public void setAdjMine(aMine)
+    public void setAdjMine(int aMine)
     {
         if (isMine)
         {

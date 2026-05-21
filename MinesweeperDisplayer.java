@@ -6,11 +6,11 @@ public class MinesweeperDisplayer
     private static final String space = " ";
     private static boolean end = false;
 
-    public static void printBoard(block[][] grid)
+    public static void printGrid(Block[][] grid)
     {
-        for (block[] row : grid)
+        for (Block[] row : grid)
         {
-            for (block b : row)
+            for (Block b : row)
             {
                 String out;
                 if (b.isShown())
@@ -26,7 +26,7 @@ public class MinesweeperDisplayer
                     }
                     else
                     {
-                        out = b.getAdjMine();
+                        out = Integer.toString(b.getAdjMine());
                     }
                 }
                 else
@@ -39,7 +39,7 @@ public class MinesweeperDisplayer
         }
     }
 
-    public boolean ending()
+    public static boolean ending()
     {
         return end;
     }

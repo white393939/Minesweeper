@@ -3,25 +3,30 @@ import java.io.*;
 
 public class Minesweeper
 {
-    private block[][] grid;
+    private Block[][] grid;
     private Scanner scan;
     
     public Minesweeper()
     {
-        grid = new block[12][12];
+        grid = new Block[12][12];
         initialize(22);
     }
 
     public Minesweeper(int nRows, int nCols)
     {
-        grid = new block[nRows][nCols];
+        grid = new Block[nRows][nCols];
         initialize((int) (nRows * nCols * 0.15));
     }
 
     public Minesweeper(int nRows, int nCols, int nMines)
     {
-        grid = new block[nRows][nCols];
+        grid = new Block[nRows][nCols];
         initialize((int) (nMines));
+    }
+
+    public Block[][] getGrid()
+    {
+        return grid;
     }
 
     public void sweep(int row, int col)
@@ -46,7 +51,7 @@ public class Minesweeper
         }
     }
     
-    private initialize(int nOfMine)
+    private void initialize(int nOfMine)
     {
         int gRow = grid.length;
         int gCol = grid[0].length;
@@ -59,12 +64,14 @@ public class Minesweeper
         }
         for (int i = 0; i < nOfMine; i++)
         {
+            int row ;
+            int col;
             do
             {
-                int row = (int) (Math.random() * gRow);
-                int col = (int) (Math.random() * gCol);
+                row = (int) (Math.random() * gRow);
+                col = (int) (Math.random() * gCol);
             }
-            while (grid[row][col].isMine);
+            while (grid[row][col].isMine());
             grid[row][col].setMine();
             for (int j = row - 1; j < row + 2; j++) //changing numbers of block
             {
