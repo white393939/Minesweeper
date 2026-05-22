@@ -4,7 +4,6 @@ import java.io.*;
 public class Minesweeper
 {
     private Block[][] grid;
-    private Scanner scan;
     
     public Minesweeper()
     {
@@ -79,9 +78,9 @@ public class Minesweeper
                 {
                     try
                     {
-                        grid[row][col].incrimentAdjMine();
+                        grid[j][k].incrimentAdjMine();
                     }
-                    catch(IndexOutOfBoundsException e){}}
+                    catch(IndexOutOfBoundsException e){}
                 }
             }
         }

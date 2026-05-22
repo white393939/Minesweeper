@@ -13,7 +13,7 @@ public class MinesweeperDisplayer
             for (Block b : row)
             {
                 String out;
-                if (b.isShown())
+                if (true) //b.isShown())
                 {
                     if (b.isMine())
                     {

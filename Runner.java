@@ -1,11 +1,17 @@
 import java.util.Scanner;
 public class Runner
 {
-   public static void start()
+   public static void run()
     {
         Scanner scan = new Scanner(System.in);
-        int iRow = scan.nextInt();
-        int iCol = scan.nextInt();
+        int iRow;
+        int iCol;
+        do
+        {
+            iRow = scan.nextInt();
+            iCol = scan.nextInt();
+        }
+        while (iRow == 0 || iCol == 0);
         Minesweeper m = new Minesweeper(iRow, iCol);
         do
         {
