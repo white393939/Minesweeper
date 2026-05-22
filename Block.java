@@ -62,6 +62,6 @@ public class Block {
 
     public boolean isEmpty()
     {
-        return adjMine == 0;
+        return !isMine() && adjMine == 0;
     }
 }

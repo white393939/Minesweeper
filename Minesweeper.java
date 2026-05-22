@@ -33,18 +33,18 @@ public class Minesweeper
         grid[row][col].show();
         if (grid[row][col].isEmpty())
         {
-            for (int i = row - 1; i < row + 2; row++)
+            for (int i = row - 1; i < row + 2; i++)
             {
                 for (int j = col - 1; j < col + 2; j++)
                 {
-                    try
+                    if (i > -1 && j > -1 && i < grid.length && j < grid[0].length) //try
                     {
                         if (!grid[i][j].isShown())
                         {
                             sweep(i, j);
                         }
                     }
-                    catch (IndexOutOfBoundsException e){}
+                    //catch (IndexOutOfBoundsException e){} //may be causing bugs
                 }
             }
         }
@@ -76,11 +76,11 @@ public class Minesweeper
             {
                 for (int k = col - 1; k < col + 2; k++)
                 {
-                    try
+                    if (j > -1 && k > -1 && j < gRow && k < gCol) //try
                     {
                         grid[j][k].incrimentAdjMine();
                     }
-                    catch(IndexOutOfBoundsException e){}
+                    //catch(IndexOutOfBoundsException e){} //may be causing bug
                 }
             }
         }
