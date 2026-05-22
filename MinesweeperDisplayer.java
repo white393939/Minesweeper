@@ -41,6 +41,6 @@ public class MinesweeperDisplayer
 
     public static boolean ending()
     {
-        return end;
+        return end; //needs debug && fix, not working as intended
     }
 }

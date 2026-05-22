@@ -37,14 +37,13 @@ public class Minesweeper
             {
                 for (int j = col - 1; j < col + 2; j++)
                 {
-                    if (i > -1 && j > -1 && i < grid.length && j < grid[0].length) //try
+                    if (i > -1 && j > -1 && i < grid.length && j < grid[0].length)
                     {
                         if (!grid[i][j].isShown())
                         {
                             sweep(i, j);
                         }
                     }
-                    //catch (IndexOutOfBoundsException e){} //may be causing bugs
                 }
             }
         }
@@ -61,13 +60,13 @@ public class Minesweeper
                 grid[row][col] = new Block();
             }
         }
-        for (int i = 0; i < nOfMine; i++)
+        for (int i = 0; i < nOfMine; i++) //setting mines
         {
             int row ;
             int col;
             do
             {
-                row = (int) (Math.random() * gRow);
+                row = (int) (Math.random() * gRow); //update option: improve mine algorithem
                 col = (int) (Math.random() * gCol);
             }
             while (grid[row][col].isMine());
@@ -76,11 +75,10 @@ public class Minesweeper
             {
                 for (int k = col - 1; k < col + 2; k++)
                 {
-                    if (j > -1 && k > -1 && j < gRow && k < gCol) //try
+                    if (j > -1 && k > -1 && j < gRow && k < gCol)
                     {
                         grid[j][k].incrimentAdjMine();
                     }
-                    //catch(IndexOutOfBoundsException e){} //may be causing bug
                 }
             }
         }

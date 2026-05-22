@@ -15,11 +15,11 @@ public class Runner
         Minesweeper m = new Minesweeper(iRow, iCol);
         do
         {
-            MinesweeperDisplayer.printGrid(m.getGrid()); //not displaying after initial setup
+            MinesweeperDisplayer.printGrid(m.getGrid());
             int row = scan.nextInt();
             int col = scan.nextInt();
             m.sweep(row, col);
         }
-        while(!MinesweeperDisplayer.ending());
+        while(!MinesweeperDisplayer.ending()); //not ending as intended
     }
 }
