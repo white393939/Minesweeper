@@ -4,11 +4,17 @@ public class MinesweeperDisplayer
     private static final String empty = "□";
     private static final String mine = "*";
     private static final String space = " ";
+    private static final String flag = "⚑";
     private static boolean end = false;
 
     public static void printGrid(Minesweeper m)
     {
-        System.out.println("empty blocks remaining: " + m.getNumberOfEmptyBlocks());
+        int emptyBlocks = m.getNumberOfEmptyBlocks();
+        System.out.println("empty blocks remaining: " + emptyBlocks);
+        if (emptyBlocks == 0)
+        {
+            end = true;
+        }
         System.out.print(space + space);
         for (int i = 0; i < m.getNCols(); i++)
         {
@@ -43,6 +49,25 @@ public class MinesweeperDisplayer
                     out = hide;
                 }
                 System.out.print(out + space);
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printIniGrid(int row, int col)
+    {
+        System.out.print(space + space);
+        for (int n = 0; n < row; n++)
+        {
+            System.out.print(n % 10 + space); //printing col index
+        }
+        System.out.println();
+        for (int i = 0; i < row; i++)
+        {
+            System.out.print(i % 10 + space);
+            for (int j = 0; j < col; j++)
+            {
+                System.out.print(hide + space);
             }
             System.out.println();
         }

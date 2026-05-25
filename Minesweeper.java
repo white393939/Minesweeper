@@ -6,29 +6,13 @@ public class Minesweeper
     private Block[][] grid;
     private int numberOfMines;
     private int numberOfUnshownBlocks;
-    
-    public Minesweeper()
-    {
-        grid = new Block[12][12];
-        numberOfUnshownBlocks = getSize();
-        numberOfMines = 22;
-        initialize(22);
-    }
 
-    public Minesweeper(int nRows, int nCols)
+    public Minesweeper(int nRows, int nCols, int pRow, int pCol)
     {
         grid = new Block[nRows][nCols];
         numberOfUnshownBlocks = getSize();
         numberOfMines = (int) (nRows * nCols * 0.15);
-        initialize(numberOfMines);
-    }
-
-    public Minesweeper(int nRows, int nCols, int nMines)
-    {
-        grid = new Block[nRows][nCols];
-        numberOfUnshownBlocks = getSize();
-        numberOfMines = nMines;
-        initialize((int) (nMines));
+        initialize(numberOfMines, pRow, pCol);
     }
 
     public Block[][] getGrid()
@@ -97,8 +81,8 @@ public class Minesweeper
             }
         }
     }
-    
-    private void initialize(int nOfMine)
+
+    private void initialize(int nOfMine, int pRow, int pCol)
     {
         int gRow = grid.length;
         int gCol = grid[0].length;
@@ -111,14 +95,14 @@ public class Minesweeper
         }
         for (int i = 0; i < nOfMine; i++) //setting mines
         {
-            int row ;
+            int row;
             int col;
             do
             {
                 row = (int) (Math.random() * gRow); //update option: improve mine setup algorithem
-                col = (int) (Math.random() * gCol); //update option: no mine on first move
+                col = (int) (Math.random() * gCol);
             }
-            while (grid[row][col].isMine());
+            while (grid[row][col].isMine() || Util.isWithinAdjMineRange(row, col, pRow, pCol));
             grid[row][col].setMine();
             for (int j = row - 1; j < row + 2; j++) //changing numbers of block
             {

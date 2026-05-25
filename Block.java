@@ -3,7 +3,7 @@ public class Block {
     private boolean isShown;
     private int adjMine;
 
-    //update option: add ability to flag block
+    //update option: add ability to flag
 
     public Block()
     {

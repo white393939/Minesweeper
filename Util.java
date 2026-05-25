@@ -10,4 +10,14 @@ public class Util
         }
         return false;
     }
+
+    public static boolean isValid(int row, int col, int mRow, int mCol)
+    {
+        return row >= 0 && row < mRow && col >= 0 && col < mCol;
+    }
+
+    public static boolean isWithinAdjMineRange(int row, int col, int pRow, int pCol)
+    {
+        return row > pRow-2 && row < pRow+2 && col > pCol-2 && col < pCol+2;
+    }
 }
