@@ -6,11 +6,20 @@ public class MinesweeperDisplayer
     private static final String space = " ";
     private static boolean end = false;
 
-    public static void printGrid(Block[][] grid)
+    public static void printGrid(Minesweeper m)
     {
-        for (Block[] row : grid)
+        System.out.println("empty blocks remaining: " + m.getNumberOfEmptyBlocks());
+        System.out.print(space + space);
+        for (int i = 0; i < m.getNCols(); i++)
         {
-            for (Block b : row)
+            System.out.print(i % 10 + space); //printing col index
+        }
+        System.out.println();
+        for (int row = 0; row < m.getNRows(); row++)
+        {
+            Block[] bRow = m.getRowAt(row);
+            System.out.print(row % 10 + space); //printing row index
+            for (Block b : bRow)
             {
                 String out;
                 if (b.isShown())
@@ -41,6 +50,6 @@ public class MinesweeperDisplayer
 
     public static boolean ending()
     {
-        return end; //needs debug && fix, not working as intended
+        return end;
     }
 }

@@ -2,7 +2,9 @@ public class Block {
     private boolean isMine;
     private boolean isShown;
     private int adjMine;
-    
+
+    //update option: add ability to flag block
+
     public Block()
     {
         isMine = false;

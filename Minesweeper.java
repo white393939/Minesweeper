@@ -4,22 +4,30 @@ import java.io.*;
 public class Minesweeper
 {
     private Block[][] grid;
+    private int numberOfMines;
+    private int numberOfUnshownBlocks;
     
     public Minesweeper()
     {
         grid = new Block[12][12];
+        numberOfUnshownBlocks = getSize();
+        numberOfMines = 22;
         initialize(22);
     }
 
     public Minesweeper(int nRows, int nCols)
     {
         grid = new Block[nRows][nCols];
-        initialize((int) (nRows * nCols * 0.15));
+        numberOfUnshownBlocks = getSize();
+        numberOfMines = (int) (nRows * nCols * 0.15);
+        initialize(numberOfMines);
     }
 
     public Minesweeper(int nRows, int nCols, int nMines)
     {
         grid = new Block[nRows][nCols];
+        numberOfUnshownBlocks = getSize();
+        numberOfMines = nMines;
         initialize((int) (nMines));
     }
 
@@ -28,9 +36,50 @@ public class Minesweeper
         return grid;
     }
 
+    public Block[] getRowAt(int row)
+    {
+        return grid[row];
+    }
+
+    public Block getBlockAt(int row, int col)
+    {
+        return grid[row][col];
+    }
+
+    public int getSize()
+    {
+        return grid.length * grid[0].length;
+    }
+
+    public int getNRows()
+    {
+        return grid.length;
+    }
+
+    public int getNCols()
+    {
+        return grid[0].length;
+    }
+
+    public int getNumberOfMines()
+    {
+        return numberOfMines;
+    }
+
+    public int getNumberOfUnshownBlocks()
+    {
+        return numberOfUnshownBlocks;
+    }
+
+    public int getNumberOfEmptyBlocks()
+    {
+        return numberOfUnshownBlocks - numberOfMines;
+    }
+
     public void sweep(int row, int col)
     {
         grid[row][col].show();
+        numberOfUnshownBlocks--;
         if (grid[row][col].isEmpty())
         {
             for (int i = row - 1; i < row + 2; i++)
@@ -66,8 +115,8 @@ public class Minesweeper
             int col;
             do
             {
-                row = (int) (Math.random() * gRow); //update option: improve mine algorithem
-                col = (int) (Math.random() * gCol);
+                row = (int) (Math.random() * gRow); //update option: improve mine setup algorithem
+                col = (int) (Math.random() * gCol); //update option: no mine on first move
             }
             while (grid[row][col].isMine());
             grid[row][col].setMine();
