@@ -8,8 +8,8 @@ public class MinesweeperDisplayer
 
     public static void printGrid(Minesweeper m)
     {
-        int emptyBlocks = m.getNumberOfEmptyBlocks();
-        System.out.println("empty blocks remaining: " + emptyBlocks);
+        int nOfMineLeft = m.getNumberOfMinesLeft();
+        System.out.println("mine remaining: " + nOfMineLeft);
         System.out.print(space + space);
         for (int i = 0; i < m.getNCols(); i++)
         {
@@ -23,7 +23,11 @@ public class MinesweeperDisplayer
             for (Block b : bRow)
             {
                 String out;
-                if (b.isShown())
+                if (b.isFlagged())
+                {
+                    out = flag;
+                }
+                else if (b.isShown())
                 {
                     if (b.isMine())
                     {
@@ -41,6 +45,40 @@ public class MinesweeperDisplayer
                 else
                 {
                     out = hide;
+                }
+                System.out.print(out + space);
+            }
+            System.out.println();
+        }
+    }
+    public static void printEndingGrid(Minesweeper m)
+    {
+        int nOfMineLeft = m.getNumberOfMinesLeft();
+        System.out.println("full grid");
+        System.out.print(space + space);
+        for (int i = 0; i < m.getNCols(); i++)
+        {
+            System.out.print(i % 10 + space); //printing col index
+        }
+        System.out.println();
+        for (int row = 0; row < m.getNRows(); row++)
+        {
+            Block[] bRow = m.getRowAt(row);
+            System.out.print(row % 10 + space); //printing row index
+            for (Block b : bRow)
+            {
+                String out;
+                if (b.isMine())
+                {
+                    out = mine;
+                }
+                else if (b.isEmpty())
+                {
+                    out = empty;
+                }
+                else
+                {
+                    out = Integer.toString(b.getAdjMine());
                 }
                 System.out.print(out + space);
             }

@@ -20,4 +20,14 @@ public class Util
     {
         return row > pRow-2 && row < pRow+2 && col > pCol-2 && col < pCol+2;
     }
+
+    public static boolean isInt(String s)
+    {
+        return s.matches("\\d+");
+    }
+
+    public static boolean isFlagging(String s)
+    {
+        return s.equals("f");
+    }
 }

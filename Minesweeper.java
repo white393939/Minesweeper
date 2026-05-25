@@ -5,13 +5,12 @@ public class Minesweeper
 {
     private Block[][] grid;
     private int numberOfMines;
-    private int numberOfUnshownBlocks;
+    private int numberOfFlag;
     private boolean end;
 
     public Minesweeper(int nRows, int nCols, int pRow, int pCol)
     {
         grid = new Block[nRows][nCols];
-        numberOfUnshownBlocks = getSize();
         numberOfMines = (int) (nRows * nCols * 0.15);
         end = false;
         initialize(numberOfMines, pRow, pCol);
@@ -52,19 +51,29 @@ public class Minesweeper
         return numberOfMines;
     }
 
-    public int getNumberOfUnshownBlocks()
+    public int getNumberOfFlag()
     {
-        return numberOfUnshownBlocks;
+        return numberOfFlag;
     }
 
-    public int getNumberOfEmptyBlocks()
+    public int getNumberOfMinesLeft()
     {
-        return numberOfUnshownBlocks - numberOfMines;
+        return numberOfMines - numberOfFlag;
     }
 
     public boolean getEndStatus()
     {
-        return end || getNumberOfEmptyBlocks() == 0;
+        return end;
+    }
+
+    public void flag(int row, int col)
+    {
+        grid[row][col].flag();
+        numberOfFlag++;
+        if (getNumberOfMinesLeft() == 0)
+        {
+            end = true;
+        }
     }
 
     public void sweep(int row, int col)
@@ -74,7 +83,6 @@ public class Minesweeper
         {
             end = true;
         }
-        numberOfUnshownBlocks--;
         if (grid[row][col].isEmpty())
         {
             for (int i = row - 1; i < row + 2; i++)

@@ -6,6 +6,7 @@ public class Runner
         Scanner scan = new Scanner(System.in);
         int iRow;
         int iCol;
+        boolean isFlagging = false;
         do
         {
             System.out.println("input two integers for grid size, cannot be smaller than 4*4");
@@ -19,7 +20,7 @@ public class Runner
         int col = scan.nextInt();
         while(!Util.isValid(row, col, iRow, iCol))
         {
-            System.out.println("index invalid");
+            System.out.println("invalid index");
             row = scan.nextInt();
             col = scan.nextInt();
         }
@@ -30,18 +31,55 @@ public class Runner
         while(!m.getEndStatus())
         {
             MinesweeperDisplayer.printGrid(m);
-            row = scan.nextInt();
-            col = scan.nextInt();
-            if (Util.isValid(m, row, col)) //checking for indexOutOfBounds and already shown block
+            String s = scan.next();
+            if (Util.isFlagging(s))
             {
-                m.sweep(row, col);
+                isFlagging = !isFlagging;
+                System.out.println("Flagging: " + isFlagging);
+                continue;
+            }
+            else if (Util.isInt(s))
+            {
+                row = Integer.parseInt(s);
             }
             else
             {
-                System.out.println("index invalid");
+                System.out.println("invalid input");
+                continue;
+            }
+            s = scan.next();
+            if (Util.isInt(s))
+            {
+                col = Integer.parseInt(s);
+            }
+            else
+            {
+                System.out.println("invalid input");
+                continue;
+            }
+            if (Util.isValid(m, row, col)) //checking for indexOutOfBounds and already shown block
+            {
+                if (isFlagging)
+                {
+                    m.flag(row, col);
+                }
+                else if(!m.getBlockAt(row, col).isFlagged())
+                {
+                    m.sweep(row, col);
+                }
+                else
+                {
+                    System.out.println("cannot sweep a flagged block");
+                }
+            }
+            else
+            {
+                System.out.println("invalid index");
             }
         }
         MinesweeperDisplayer.printGrid(m);
+        System.out.println();
+        MinesweeperDisplayer.printEndingGrid(m);
         System.out.println("game over");
         scan.close();
     }

@@ -2,48 +2,28 @@ public class Block {
     private boolean isMine;
     private boolean isShown;
     private int adjMine;
-
-    //update option: add ability to flag
+    private boolean isFlagged;
 
     public Block()
     {
         isMine = false;
         isShown = false;
-        adjMine = 0;
-    }
-
-    public Block(boolean mine)
-    {
-        isMine = mine;
-        isShown = false;
+        isFlagged = false;
         adjMine = 0;
     }
 
     public boolean isShown()
     {
-        return this.isShown;
+        return isShown;
     }
 
     public boolean isMine()
     {
-        return this.isMine;
-    }
-
-    public void setAdjMine(int aMine)
-    {
-        if (isMine)
-        {
-            return;
-        }
-        adjMine = aMine;
+        return isMine;
     }
 
     public void incrimentAdjMine()
     {
-        if (isMine)
-        {
-            return;
-        }
         adjMine++;
     }
 
@@ -62,8 +42,18 @@ public class Block {
         isMine = true;
     }
 
+    public void flag()
+    {
+        isFlagged = !isFlagged;
+    }
+
+    public boolean isFlagged()
+    {
+        return isFlagged;
+    }
+
     public boolean isEmpty()
     {
-        return !isMine() && adjMine == 0;
+        return !isMine() && !isFlagged && adjMine == 0;
     }
 }

@@ -4,8 +4,15 @@ This is an APCSA 2025-2026 Spring final project
 5/18/2026
 https://github.com/white393939/
 
-input two postive non-zero integers on the first run for the grid size
-then input the coordinates of the block in row column format to sweep it.
+input two integers on the first run for the grid size(cannot be less then 4*4)
+then input the coordinates of the block as labled in row column format to sweep it
+coordinates starts at 0.
+Ex: "5 3" is the block at row 5, column 3, but is at the 6th row and 4th column
 
-a valid block is a block that is within the bounds of the grid and is not already sweeped
+input "f" to toggle flag mode
+then input coordinates to flag a block
+flag mode is not active by defult
+flag mode cannot be entered on the first sweep(before any block is shown).
+
+a valid block is a block that is within the bounds of the grid and is not already sweeped or flagged.
 
