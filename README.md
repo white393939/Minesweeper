@@ -4,6 +4,15 @@ This is an APCSA 2025-2026 Spring final project
 5/18/2026
 https://github.com/white393939/
 
+ths is a standered minesweeper game
+
+Example of characters:
+"▣" : Unknown block
+"□" : Empty block
+"*" : mine
+"⚑" : flaged block
+"1" : block with 1 mine within 3*3 range
+
 input two integers on the first run for the grid size(cannot be less then 4*4)
 then input the coordinates of the block as labled in row column format to sweep it
 coordinates starts at 0.
@@ -14,5 +23,5 @@ then input coordinates to flag a block
 flag mode is not active by defult
 flag mode cannot be entered on the first sweep(before any block is shown).
 
-a valid block is a block that is within the bounds of the grid and is not already sweeped or flagged.
-
+a valid block is a block that is within the bounds of the grid
+and is not already sweeped or flagged.
