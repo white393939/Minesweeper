@@ -54,7 +54,7 @@ public class MinesweeperDisplayer
         }
     }
 
-    public static void printIniGrid(int row, int col)
+    public static void printIniGrid(int row, int col) //first print
     {
         System.out.print(space + space);
         for (int n = 0; n < row; n++)

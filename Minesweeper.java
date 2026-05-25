@@ -102,7 +102,7 @@ public class Minesweeper
                 row = (int) (Math.random() * gRow); //update option: improve mine setup algorithem
                 col = (int) (Math.random() * gCol);
             }
-            while (grid[row][col].isMine() || Util.isWithinAdjMineRange(row, col, pRow, pCol));
+            while (grid[row][col].isMine() || Util.isWithinAdjMineRange(row, col, pRow, pCol)); //space on first sweep
             grid[row][col].setMine();
             for (int j = row - 1; j < row + 2; j++) //changing numbers of block
             {
