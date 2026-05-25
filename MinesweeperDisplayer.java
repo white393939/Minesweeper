@@ -89,7 +89,7 @@ public class MinesweeperDisplayer
     public static void printIniGrid(int row, int col) //first print
     {
         System.out.print(space + space);
-        for (int n = 0; n < row; n++)
+        for (int n = 0; n < col; n++)
         {
             System.out.print(n % 10 + space); //printing col index
         }
