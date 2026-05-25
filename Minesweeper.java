@@ -6,12 +6,14 @@ public class Minesweeper
     private Block[][] grid;
     private int numberOfMines;
     private int numberOfUnshownBlocks;
+    private boolean end;
 
     public Minesweeper(int nRows, int nCols, int pRow, int pCol)
     {
         grid = new Block[nRows][nCols];
         numberOfUnshownBlocks = getSize();
         numberOfMines = (int) (nRows * nCols * 0.15);
+        end = false;
         initialize(numberOfMines, pRow, pCol);
     }
 
@@ -60,9 +62,18 @@ public class Minesweeper
         return numberOfUnshownBlocks - numberOfMines;
     }
 
+    public boolean getEndStatus()
+    {
+        return end || getNumberOfEmptyBlocks() == 0;
+    }
+
     public void sweep(int row, int col)
     {
         grid[row][col].show();
+        if (grid[row][col].isMine())
+        {
+            end = true;
+        }
         numberOfUnshownBlocks--;
         if (grid[row][col].isEmpty())
         {

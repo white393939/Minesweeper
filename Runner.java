@@ -27,7 +27,7 @@ public class Runner
         Minesweeper m = new Minesweeper(iRow, iCol, row, col); //settingup game
         m.sweep(row, col);
 
-        while(!MinesweeperDisplayer.ending())
+        while(!m.getEndStatus())
         {
             MinesweeperDisplayer.printGrid(m);
             row = scan.nextInt();
@@ -40,7 +40,9 @@ public class Runner
             {
                 System.out.println("index invalid");
             }
-        } //still taking one input before ending
+        }
+        MinesweeperDisplayer.printGrid(m);
         System.out.println("game over");
+        scan.close();
     }
 }
