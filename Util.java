@@ -16,6 +16,11 @@ public class Util
         return row >= 0 && row < mRow && col >= 0 && col < mCol;
     }
 
+    public static boolean isValid(int i, int j)
+    {
+        return i >= 0 && i < j;
+    }
+
     public static boolean isWithinAdjMineRange(int row, int col, int pRow, int pCol)
     {
         return row > pRow-2 && row < pRow+2 && col > pCol-2 && col < pCol+2;
@@ -23,7 +28,7 @@ public class Util
 
     public static boolean isInt(String s)
     {
-        return s.matches("\\d+");
+        return s != null && s.matches("\\d+");
     }
 
     public static boolean isFlagging(String s)

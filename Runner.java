@@ -1,29 +1,95 @@
 import java.util.Scanner;
+
 public class Runner
 {
    public static void run()
     {
         Scanner scan = new Scanner(System.in);
-        int iRow;
-        int iCol;
+        int iRow = -1;
+        int iCol = -1;
         boolean isFlagging = false;
+        System.out.println("input two integers for grid size, cannot be smaller than 4*4");
         do
         {
-            System.out.println("input two integers for grid size, cannot be smaller than 4*4");
-            iRow = scan.nextInt();
-            iCol = scan.nextInt();
+            iRow = -1;
+            iCol = -1;
+            String str = scan.next();
+            if (Util.isInt(str))
+            {
+                iRow = Integer.parseInt(str);
+                if (iRow < 4)
+                {
+                    System.out.println("grid cannot be smaller than 4*4");
+                    continue;
+                }
+            }
+            else
+            {
+                System.out.println("invalid input");
+                continue;
+            }
+            str = scan.next();
+            if (Util.isInt(str))
+            {
+                iCol = Integer.parseInt(str);
+                if (iCol < 4)
+                {
+                    System.out.println("grid cannot be smaller than 4*4");
+                    continue;
+                }
+            }
+            else
+            {
+                System.out.println("invalid input");
+                continue;
+            }
         }
         while (iRow < 4 || iCol < 4);
 
         MinesweeperDisplayer.printIniGrid(iRow, iCol); //first input
-        int row = scan.nextInt();
-        int col = scan.nextInt();
-        while(!Util.isValid(row, col, iRow, iCol))
+        String s;
+        int row;
+        int col;
+        do
         {
-            System.out.println("invalid index");
-            row = scan.nextInt();
-            col = scan.nextInt();
+            s = scan.next();
+            row = -1;
+            col = -1;
+           if (Util.isInt(s) && Util.isValid(Integer.parseInt(s), iRow))
+            {
+                row = Integer.parseInt(s);
+            }
+            else
+            {
+                if (Util.isFlagging(s))
+                {
+                    System.out.println("cannot flag on frist sweep");
+                }
+                else
+                {
+                    System.out.println("invalid input");
+                }
+                continue;
+            }
+            s = scan.next();
+            if (Util.isInt(s) && Util.isValid(Integer.parseInt(s), iCol))
+            {
+                col = Integer.parseInt(s);
+            }
+            else
+            {
+                if (Util.isFlagging(s))
+                {
+                    System.out.println("cannot flag on frist sweep");
+                }
+                else
+                {
+                    System.out.println("invalid input");
+                }
+                continue;
+            }
         }
+        while(!Util.isValid(row, col, iRow, iCol));
         
         Minesweeper m = new Minesweeper(iRow, iCol, row, col); //settingup game
         m.sweep(row, col);
@@ -31,7 +97,7 @@ public class Runner
         while(!m.getEndStatus())
         {
             MinesweeperDisplayer.printGrid(m);
-            String s = scan.next();
+            s = scan.next();
             if (Util.isFlagging(s))
             {
                 isFlagging = !isFlagging;
