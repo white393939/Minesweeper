@@ -1,10 +1,10 @@
-public class Block {
+public class Square {
     private boolean isMine;
     private boolean isShown;
     private int adjMine;
     private boolean isFlagged;
 
-    public Block()
+    public Square()
     {
         isMine = false;
         isShown = false;

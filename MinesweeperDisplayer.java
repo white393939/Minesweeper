@@ -18,9 +18,9 @@ public class MinesweeperDisplayer
         System.out.println();
         for (int row = 0; row < m.getNRows(); row++)
         {
-            Block[] bRow = m.getRowAt(row);
+            Square[] bRow = m.getRowAt(row);
             System.out.print(row % 10 + space); //printing row index
-            for (Block b : bRow)
+            for (Square b : bRow)
             {
                 String out;
                 if (b.isFlagged())
@@ -63,9 +63,9 @@ public class MinesweeperDisplayer
         System.out.println();
         for (int row = 0; row < m.getNRows(); row++)
         {
-            Block[] bRow = m.getRowAt(row);
+            Square[] bRow = m.getRowAt(row);
             System.out.print(row % 10 + space); //printing row index
-            for (Block b : bRow)
+            for (Square b : bRow)
             {
                 String out;
                 if (b.isMine())

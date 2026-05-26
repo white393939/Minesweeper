@@ -6,7 +6,7 @@ public class Util
         int mCol = m.getNCols();
         if (row >= 0 && row < mRow && col >= 0 && col < mCol)
         {
-            return !m.getBlockAt(row, col).isShown();
+            return !m.getSquareAt(row, col).isShown();
         }
         return false;
     }

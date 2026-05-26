@@ -3,30 +3,30 @@ import java.io.*;
 
 public class Minesweeper
 {
-    private Block[][] grid;
+    private Square[][] grid;
     private int numberOfMines;
     private int numberOfFlag;
     private boolean end;
 
     public Minesweeper(int nRows, int nCols, int pRow, int pCol)
     {
-        grid = new Block[nRows][nCols];
+        grid = new Square[nRows][nCols];
         numberOfMines = (int) (nRows * nCols * 0.15);
         end = false;
         initialize(numberOfMines, pRow, pCol);
     }
 
-    public Block[][] getGrid()
+    public Square[][] getGrid()
     {
         return grid;
     }
 
-    public Block[] getRowAt(int row)
+    public Square[] getRowAt(int row)
     {
         return grid[row];
     }
 
-    public Block getBlockAt(int row, int col)
+    public Square getSquareAt(int row, int col)
     {
         return grid[row][col];
     }
@@ -109,7 +109,7 @@ public class Minesweeper
         {
             for (int col = 0; col < gCol; col++)
             {
-                grid[row][col] = new Block();
+                grid[row][col] = new Square();
             }
         }
         for (int i = 0; i < nOfMine; i++) //setting mines
@@ -123,7 +123,7 @@ public class Minesweeper
             }
             while (grid[row][col].isMine() || Util.isWithinAdjMineRange(row, col, pRow, pCol)); //space on first sweep
             grid[row][col].setMine();
-            for (int j = row - 1; j < row + 2; j++) //changing numbers of block
+            for (int j = row - 1; j < row + 2; j++) //changing numbers of square
             {
                 for (int k = col - 1; k < col + 2; k++)
                 {

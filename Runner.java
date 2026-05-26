@@ -57,19 +57,19 @@ public class Runner
                 System.out.println("invalid input");
                 continue;
             }
-            if (Util.isValid(m, row, col)) //checking for indexOutOfBounds and already shown block
+            if (Util.isValid(m, row, col)) //checking for indexOutOfBounds and already shown square
             {
                 if (isFlagging)
                 {
                     m.flag(row, col);
                 }
-                else if(!m.getBlockAt(row, col).isFlagged())
+                else if(!m.getSquareAt(row, col).isFlagged())
                 {
                     m.sweep(row, col);
                 }
                 else
                 {
-                    System.out.println("cannot sweep a flagged block");
+                    System.out.println("cannot sweep a flagged square");
                 }
             }
             else
